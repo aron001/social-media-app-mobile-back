@@ -8,10 +8,10 @@ const userRoute= require("./routes/users");
 const authRoute= require("./routes/auth");
 
 dotenv.config();
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifieldTopology: true},()=>{
-    console.log("connected to mongodb")
-});
-
+//mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifieldTopology: true},()=>{
+//console.log("connected to mongodb")
+//});
+mongoose.connect(process.env.MONGO_URL,()=>console.log('database connected'));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
@@ -19,6 +19,6 @@ app.use(morgan("common"));
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 
-app.listen(8000,()=>{
-    console.log("backend server is running on port 8000")
+app.listen(3000,()=>{
+    console.log("backend server is running on port 5000")
 })
