@@ -1,7 +1,21 @@
-const router=require("express").Router();
+/*const router=require("express").Router();
 const User=require("../models/User");
-const bcrypt =require ("bcrypt");
+const bcrypt =require ("bcrypt");*/
+const express = require('express')
+const router = express.Router()
+const {
+  registerUser,
+  loginUser,
+  
+} = require('../controllers/authController')
+const { protect} = require('../middleware/authMiddleware')
 
+
+router.post('/signup', registerUser)
+router.post('/login', loginUser)
+
+module.exports = router
+/*
 //register
 router.post("/register", async (req, res) => {
 
@@ -38,3 +52,4 @@ try {
 }
 });
 module.exports =router
+*/

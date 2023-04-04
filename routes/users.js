@@ -1,4 +1,41 @@
-const router=require("express").Router();
+const express = require('express')
+const router = express.Router()
+const {
+ 
+  updateUser,
+  deleteUser,
+  getMe,
+  follow,
+  unfollow,
+  countallusers,
+  admindeleteUser
+} = require('../controllers/userController')
+
+const { protect ,isAdmin} = require('../middleware/authMiddleware')
+
+
+router.put('/updateuser/:id', protect, updateUser)
+router.delete('/deleteuser/:id',protect, deleteUser)
+router.get('/me', protect, getMe)
+router.put('/:id/follow',protect,follow)
+router.put('/:id/unfollow',protect,unfollow)
+router.get('/countusers', protect,isAdmin,countallusers )
+router.delete('/admindeleteuser/:id',protect,isAdmin,admindeleteUser)
+module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const router=require("express").Router();
 const User= require("../models/User");
 const bcrypt= require("bcrypt");
 
@@ -101,3 +138,4 @@ router.put("/:id/unfollow", async (req,res)=>{
 });
 
 module.exports =router
+*/

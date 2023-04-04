@@ -1,4 +1,52 @@
-const router= require ("express").Router();
+const express = require('express')
+const router = express.Router()
+const {
+ 
+  setPost,
+  updatePost,
+  deletePost,
+  likePost,
+  timelinePost,
+  fetchallPosts,
+  countallposts,
+  admindeletePost
+} = require('../controllers/postController')
+
+const { protect,isAdmin } = require('../middleware/authMiddleware')
+
+
+router.post('/', protect, setPost)
+router.put('/:id', protect,updatePost)
+router.delete('/:id',protect,deletePost)
+router.put('/:id/like',protect,likePost)
+router.get('/timeline',protect,timelinePost)
+router.get('/fetchallPosts',fetchallPosts)
+router.get('/countallposts',protect,isAdmin,countallposts)
+router.delete('/delete/:id',protect,isAdmin,admindeletePost)
+module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const router= require ("express").Router();
 const Post= require("../models/Post");
 const User= require("../models/User");
 //create post
@@ -77,6 +125,6 @@ router.get("/timeline/all",async (req, res)=>{
     } catch (err){
         res.status(500).json(err);
     }
-});
-
-module.exports= router;  
+});module.exports= router; 
+*/
+ 
