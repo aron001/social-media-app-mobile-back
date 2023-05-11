@@ -68,8 +68,8 @@ const timelinePost = asyncHandler(async (req, res) => {
         const currentUser = await User.findById(req.user.id);
         const userPosts = await Post.find({ user: req.user.id});
         const friendPosts = await Promise.all(
-            currentUser.followings.map((friend) => {
-                return Post.find({ user: friend });
+            currentUser.followings.map((friendId) => {
+                return Post.find({ user:friendId });
             })
         );
         res.json(userPosts.concat(...friendPosts))
