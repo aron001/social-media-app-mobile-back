@@ -25,6 +25,9 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/quations", quationRoute);
 app.use("/api/answers", answerRoute);
+app.get("/", (req, res) => {
+    res.send("GET Request Called");
+});
 app.listen(process.env.PORT, () => {
     console.log("backend server is running on port 5000");
 });
