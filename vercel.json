@@ -7,10 +7,10 @@
     "routes": [
 
         {
-            "src": "/api(.*)",
+            "src": "/api/routes/(.*)",
             "dest": "/api"
         }
 
-    ],
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+    ]
+
 }
