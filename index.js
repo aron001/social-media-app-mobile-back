@@ -13,8 +13,8 @@ dotenv.config();
 //mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifieldTopology: true},()=>{
 //console.log("connected to mongodb")
 //});
-mongoose.connect(process.env.MONGO_URL, () =>
-    console.log("database connected")
+mongoose.connect(process.env.MONGO_URI, () =>
+  console.log("database connected")
 );
 app.use(express.json());
 app.use(helmet());
@@ -26,8 +26,8 @@ app.use("/api/posts", postRoute);
 app.use("/api/quations", quationRoute);
 app.use("/api/answers", answerRoute);
 app.get("/", (req, res) => {
-    res.send("GET Request Called");
+  res.send("GET Request Called");
 });
 app.listen(process.env.PORT, () => {
-    console.log("backend server is running on port 5000");
+  console.log("backend server is running on port 5000");
 });
