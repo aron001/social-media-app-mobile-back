@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+
 const {
- 
   setPost,
   updatePost,
   deletePost,
@@ -9,42 +9,21 @@ const {
   timelinePost,
   fetchallPosts,
   countallposts,
-  admindeletePost
-} = require('../controllers/postController')
+  admindeletePost,
+} = require("../controllers/postController");
 
-const { protect,isAdmin } = require('../middleware/authMiddleware')
+const { protect, isAdmin } = require("../middleware/authMiddleware");
 
+router.post("/", protect, setPost);
+router.put("/:id", protect, updatePost);
+router.delete("/:id", protect, deletePost);
+router.put("/:id/like", protect, likePost);
+router.get("/timeline", protect, timelinePost);
+router.get("/fetchallPosts", fetchallPosts);
+router.get("/countallposts", protect, isAdmin, countallposts);
+router.delete("/delete/:id", protect, isAdmin, admindeletePost);
 
-router.post('/', protect, setPost)
-router.put('/:id', protect,updatePost)
-router.delete('/:id',protect,deletePost)
-router.put('/:id/like',protect,likePost)
-router.get('/timeline',protect,timelinePost)
-router.get('/fetchallPosts',fetchallPosts)
-router.get('/countallposts',protect,isAdmin,countallposts)
-router.delete('/delete/:id',protect,isAdmin,admindeletePost)
-module.exports = router
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = router;
 
 /*const router= require ("express").Router();
 const Post= require("../models/Post");
@@ -127,4 +106,3 @@ router.get("/timeline/all",async (req, res)=>{
     }
 });module.exports= router; 
 */
- 
